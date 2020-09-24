@@ -1,0 +1,24 @@
+<div>
+  <ul *ngIf="filenames else loading">
+    <li *ngFor="let filename of filenames" style="margin: 0.25em">
+      <a routerLink="/documents/{{filename}}">{{filename}}</a>
+    </li>
+  </ul>
+</div>
+
+<ng-template #loading>
+  <p style="margin-left: 1em" class="fade-in-after-delay"><i>Loading...</i></p>
+</ng-template>
+
+<div *ngIf="error" class="alert alert-danger">
+  <h2>Error Getting the List of Documents</h2>
+  <p>
+    There was a problem getting the list of documents:
+  </p>
+  <pre>
+    {{error.message}}
+  </pre>
+  <p>
+    Make sure that the example application server is running. See the <code>README.md</code> for more details.
+  </p>
+</div>

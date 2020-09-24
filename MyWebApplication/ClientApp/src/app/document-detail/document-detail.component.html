@@ -1,0 +1,41 @@
+<h1>{{filename}}</h1>
+
+<div *ngIf="error" class="alert alert-danger">
+  <h2>Error Creating a Viewing Session</h2>
+  <p>
+    There was a problem creating a viewing session for displaying the document:
+  </p>
+  <pre>
+    {{error.message}}
+  </pre>
+  <p>
+    Make sure that:
+  </p>
+  <ul>
+    <li>The example application server is running.</li>
+    <li>The example application server is correctly configured to communicate with the PrizmDoc Viewer backend.</li>
+  </ul>
+  <p>
+    See the <code>README.md</code> for more details.
+  </p>
+</div>
+
+<ng-template [ngIf]="!error">
+  <app-prizmdoc-viewer-wrapper viewingSessionId="{{viewingSessionId}}" (viewerControl)="setViewerControl($event)" width="100%" height="500px"></app-prizmdoc-viewer-wrapper>
+  <br />
+  <div class="alert alert-primary text-center"  *ngIf="viewerControl">
+    <p>Once the viewer is ready, you can programmatically interact with the viewer from a parent Angular component. Here are some buttons which make viewer API calls to perform programmatic page navigation:</p>
+    <p>
+      <button class="btn btn-secondary" disabled="{{canInteract ? '' : 'disabled'}}" (click)="previousPage()">Previous Page</button>&nbsp;
+      <button class="btn btn-secondary" disabled="{{canInteract ? '' : 'disabled'}}" (click)="nextPage()">Next Page</button>
+    </p>
+    <p>
+      You can also wire up your parent Angular component UI to state maintained by the viewer. For example, the current page shown is:
+    </p>
+    <p class="m-0">
+      <b style="font-size: 3em;">Page {{viewerControl.getPageNumber()}}</b>
+    </p>
+  </div>
+</ng-template>
+
+<app-what-just-happened viewingSessionId="{{viewingSessionId}}" filename="{{filename}}"></app-what-just-happened>

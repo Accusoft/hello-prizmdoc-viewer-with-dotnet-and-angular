@@ -1,0 +1,80 @@
+<h2>What Just Happened?</h2>
+
+<ol>
+  <li>
+    <p>The client-side Angular application asked the server-side ASP.NET
+    application to create a viewing session for a specific document (in this
+    case,
+    <code>{{filename}}</code>):</p>
+    <p><img src="/assets/images/viewing-sequence-diagrams/angular-sample-diagrams.003.png" width="960"
+        alt="Angular app asks for new viewing session" /></p>
+  </li>
+  <li>
+    <p>The ASP.NET application <code>POST</code>ed to PAS (PrizmDoc
+    Application Services) to create a new viewing session (in this sample, the
+    application server is an ASP.NET application, but your actual application
+    server could be anything, like Java, Node.js, etc.):</p>
+    <p><img src="/assets/images/viewing-sequence-diagrams/angular-sample-diagrams.004.png" width="960"
+        alt="POST /ViewingSession" /></p>
+  </li>
+  <li>
+    <p>The ASP.NET application received a <code>viewingSessionId</code> of <code
+        style="font-weight: bold">"{{viewingSessionId}}"</code>:</p>
+    <p><img src="/assets/images/viewing-sequence-diagrams/angular-sample-diagrams.005.png" width="960"
+        alt="Receive viewingSessionId" /></p>
+  </li>
+  <li>
+    <p>The ASP.NET application sent the <code>viewingSessionId</code> to the client-side Angular application so that it
+      could create the HTML viewer control:</p>
+    <p><img src="/assets/images/viewing-sequence-diagrams/angular-sample-diagrams.006.png" width="960"
+        alt="Initialize viewer control with the viewingSessionId" /></p>
+  </li>
+  <li>
+    <p>The ASP.NET application uploaded the source document to PAS, associating that document with the viewing session:
+    </p>
+    <p><img src="/assets/images/viewing-sequence-diagrams/angular-sample-diagrams.007.png" width="960"
+        alt="Upload source document" /></p>
+  </li>
+  <li>
+    <p>PAS handed this work off to the powerful PrizmDoc Server backend, which immediately began converting the
+      document content to SVG, one page at a time:</p>
+    <p><img src="/assets/images/viewing-sequence-diagrams/angular-sample-diagrams.008.png" width="960" alt="Conversion starts" />
+    </p>
+  </li>
+  <li>
+    <p>Meanwhile, as soon as it had finished loading in the browser, the viewer began repeatedly asking PAS for the
+      first page of document content:</p>
+    <p><img src="/assets/images/viewing-sequence-diagrams/angular-sample-diagrams.009.png" width="960"
+        alt="Viewer requests first page" /></p>
+  </li>
+  <li>
+    <p>As soon as the first page of SVG content was ready, PAS returned it to the viewer, allowing you to see the
+      first page of the document:</p>
+    <p><img src="/assets/images/viewing-sequence-diagrams/angular-sample-diagrams.010.png" width="960"
+        alt="Viewer receives first page" /></p>
+  </li>
+  <li>
+    <p>As you navigate through the document, the viewer will continue to request page content as needed.</p>
+    <p><img src="/assets/images/viewing-sequence-diagrams/angular-sample-diagrams.011.png" width="960"
+        alt="Viewer continues making requests" /></p>
+  </li>
+</ol>
+
+<h2>How Does the Viewer Reach PAS (PrizmDoc Application Services)?</h2>
+
+<p>
+  To get document content, the viewer makes requests to PAS <i>through your web application</i> (or web server).
+  That's why the ASP.NET application defines a proxy route to PAS at <code>pas-proxy/</code> (see <code>Startup.cs</code>,
+  where we use <a href="https://www.nuget.org/packages/SharpReverseProxy/1.3.15">SharpReverseProxy</a>
+  in the <code>Configure</code> method to setup a <code>pas-proxy/</code> base route which proxies
+  requests to the actual PAS host).
+  If you look at the network traffic in dev tools, you'll see the requests made by the viewer for resources rooted at this path.
+</p>
+
+
+<h2>Where to Next?</h2>
+
+<p>Check out the <a href="https://help.accusoft.com/PrizmDoc/latest/HTML/prizmdoc-overview.html">PrizmDoc Viewer product
+    documentation</a>.</p>
+
+<p>Still need help? Contact <a href="https://www.accusoft.com/support">Accusoft Support</a>.</p>

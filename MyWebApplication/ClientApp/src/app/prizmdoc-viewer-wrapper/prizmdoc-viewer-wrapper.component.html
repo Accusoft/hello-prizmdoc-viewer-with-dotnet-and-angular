@@ -1,0 +1,16 @@
+<div *ngIf="!prerequisiteError" #prizmdocViewerContainer [style.width]="width" [style.height]="height"></div>
+<div *ngIf="prerequisiteError" class="alert alert-danger">
+  <h2>Error Loading Viewer Prerequisites</h2>
+  <p>
+    There was a problem loading the required JavaScript and CSS files which the viewer depends on:
+  </p>
+  <pre>
+    {{prerequisiteError.message}}
+  </pre>
+  <p>Make sure that:</p>
+  <ul>
+    <li>You have added the static <code>viewer-assets</code> directory to your web application.</li>
+    <li>You have configured a static route in your web application to serve the <code>viewer-assets</code>.</li>
+    <li>You have configured the <code>VIEWER_ASSETS_BASE_ROUTE</code> in <code>prizmdoc-viewer-wrapper.component.ts</code> to use the correct base route to the static <code>viewer-assets</code>.</li>
+  </ul>
+</div>
