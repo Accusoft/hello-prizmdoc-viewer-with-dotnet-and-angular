@@ -102,8 +102,10 @@ export class PrizmDocViewerWrapperComponent implements OnInit, OnChanges {
         }]
       },
       uiElements: {
-        attachments: true                  // Enable the email attachments UI
+        attachments: true,                 // Enable the email attachments UI
+        advancedSearch: true,              // Enable advanced search
       },
+      immediateActionMenuMode: "hover",    // Enable immediate action menu
       attachmentViewingMode: "ThisViewer", // The email attachment will be opened in the same view
     });
 
