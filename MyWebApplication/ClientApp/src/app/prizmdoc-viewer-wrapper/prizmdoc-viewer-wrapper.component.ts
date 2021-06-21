@@ -57,7 +57,7 @@ export class PrizmDocViewerWrapperComponent implements OnInit, OnChanges {
       await Promise.all([
         this.ensureScriptHasLoaded(`${VIEWER_ASSETS_BASE_ROUTE}/js/viewercontrol.js`),
         this.ensureScriptHasLoaded(`${VIEWER_ASSETS_BASE_ROUTE}/js/viewerCustomizations.js`),
-        this.ensureScriptHasLoaded(`${VIEWER_ASSETS_BASE_ROUTE}/js/jquery-3.4.1.min.js`),
+        this.ensureScriptHasLoaded(`${VIEWER_ASSETS_BASE_ROUTE}/js/jquery-3.6.0.min.js`),
         this.ensureScriptHasLoaded(`${VIEWER_ASSETS_BASE_ROUTE}/js/underscore.min.js`),
         this.ensureCssHasLoaded(`${VIEWER_ASSETS_BASE_ROUTE}/css/viewer.css`),
         this.ensureCssHasLoaded(`${VIEWER_ASSETS_BASE_ROUTE}/css/normalize.min.css`),
