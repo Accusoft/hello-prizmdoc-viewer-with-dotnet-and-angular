@@ -11,16 +11,16 @@ import { EMPTY } from 'rxjs';
 })
 export class DocumentDetailComponent implements OnInit {
   filename: string;
-  viewingSessionId: string;
+  viewingSessionId!: string;
   viewerControl: any;
   canInteract = false;
-  error: Error;
+  error!: Error;
 
   constructor(
     private route: ActivatedRoute,
     private documentService: DocumentService
   ) {
-    this.filename = this.route.snapshot.paramMap.get('filename');
+    this.filename = this.route.snapshot.paramMap.get('filename')!;
   }
 
   ngOnInit(): void {

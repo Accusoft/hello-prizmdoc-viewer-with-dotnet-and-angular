@@ -57,7 +57,7 @@ namespace MyWebApplication.Controllers
             //    client ASAP.
             var viewingSessionInfo = JsonSerializer.Deserialize<ViewingSessionInfo>(
                 await response.Content.ReadAsStringAsync()
-            );
+            ) ?? throw new Exception("Internal error - unable to read received viewing session info");
 
             // 3. Queue a task to upload the source document to PAS (part of the
             //    PrizmDoc backend) so that it can start being converted to SVG.
@@ -91,6 +91,6 @@ namespace MyWebApplication.Controllers
 
     public class ViewingSessionInfo
     {
-        public string viewingSessionId { get; set; }
+        public string? viewingSessionId { get; set; }
     }
 }

@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class WhatJustHappenedComponent implements OnInit {
 
-  @Input() viewingSessionId: string;
-  @Input() filename: string;
+  @Input() viewingSessionId!: string;
+  @Input() filename!: string;
 
   constructor() { }
 

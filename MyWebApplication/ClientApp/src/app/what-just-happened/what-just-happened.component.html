@@ -64,13 +64,11 @@
 
 <p>
   To get document content, the viewer makes requests to PAS <i>through your web application</i> (or web server).
-  That's why the ASP.NET application defines a proxy route to PAS at <code>pas-proxy/</code> (see <code>Startup.cs</code>,
-  where we use <a href="https://www.nuget.org/packages/SharpReverseProxy/1.3.15">SharpReverseProxy</a>
-  in the <code>Configure</code> method to setup a <code>pas-proxy/</code> base route which proxies
-  requests to the actual PAS host).
+  That's why the ASP.NET application defines a proxy route to PAS at <code>pas-proxy/</code> (see <code>Program.cs</code>,
+  where we use <a href="https://www.nuget.org/packages/Yarp.ReverseProxy">Yarp.ReverseProxy</a> to setup a
+  <code>pas-proxy/</code> base route which proxies requests to the actual PAS host).
   If you look at the network traffic in dev tools, you'll see the requests made by the viewer for resources rooted at this path.
 </p>
-
 
 <h2>Where to Next?</h2>
 

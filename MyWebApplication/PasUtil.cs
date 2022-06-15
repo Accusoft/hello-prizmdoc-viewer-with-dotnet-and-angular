@@ -20,7 +20,7 @@ namespace MyWebApplication
         /// <summary>
         /// Configure an instance of an HttpClient with the provided PAS base URL, cloud API key, and self-hosted secret key.
         /// </summary>
-        public static void ConfigureHttpClientForPas(HttpClient httpClient, string pasBaseUrl, string cloudApiKey = null, string selfHostedPasSecretKey = null)
+        public static void ConfigureHttpClientForPas(HttpClient httpClient, string pasBaseUrl, string? cloudApiKey = null, string? selfHostedPasSecretKey = null)
         {
             // Ensure the base URL ends with a trailing slash
             var baseUrl = pasBaseUrl;

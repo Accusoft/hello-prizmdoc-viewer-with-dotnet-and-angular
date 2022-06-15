@@ -9,7 +9,7 @@ import { EMPTY } from 'rxjs';
   styleUrls: ['./document-list.component.css']
 })
 export class DocumentListComponent implements OnInit {
-  filenames: string[];
+  filenames: string[] = [];
   error: any;
 
   constructor(

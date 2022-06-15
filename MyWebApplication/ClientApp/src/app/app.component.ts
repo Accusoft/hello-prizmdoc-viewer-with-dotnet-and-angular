@@ -8,7 +8,7 @@ import { DocumentService, } from './document.service';
 export class AppComponent {
   title = 'app';
 
-  viewingSessionId: string;
+  viewingSessionId!: string;
 
   constructor(
     private documentService: DocumentService

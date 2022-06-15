@@ -72,7 +72,7 @@ namespace MyWebApplication
 
             string defaultPasBaseUrl = "https://api.accusoft.com/prizmdoc/";
             string defaultCloudApiKey = "YOUR_API_KEY";
-            string defaultPasSecretKey = null;
+            string? defaultPasSecretKey = null;
 
             var configurationHasNotYetBeenSet = configuration["PrizmDoc:PasBaseUrl"] == defaultPasBaseUrl && configuration["PrizmDoc:CloudApiKey"] == defaultCloudApiKey && configuration["PrizmDoc:PasSecretKey"] == defaultPasSecretKey;
 
@@ -97,14 +97,14 @@ namespace MyWebApplication
                 }
             })));
             var json = await response.Content.ReadAsStringAsync();
-            string errorCode = null;
+            string? errorCode = null;
 
             if (!response.IsSuccessStatusCode)
             {
                 // Parse the JSON errorCode, if present
                 try
                 {
-                    errorCode = (string)JObject.Parse(json)["errorCode"];
+                    errorCode = (string?)JObject.Parse(json)["errorCode"];
                 }
                 catch (JsonReaderException)
                 {
@@ -136,7 +136,7 @@ namespace MyWebApplication
             }
 
             // Test PUT /SourceFile, for the self-hosted case, to make sure the secret key will work
-            var viewingSessionId = (string)JObject.Parse(json)["viewingSessionId"];
+            var viewingSessionId = (string?)JObject.Parse(json)["viewingSessionId"];
             var route = $"ViewingSession/u{viewingSessionId}/SourceFile?FileExtension=txt";
             var content = new StringContent("test");
             content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
@@ -149,7 +149,7 @@ namespace MyWebApplication
                 // Parse the JSON errorCode, if present
                 try
                 {
-                    errorCode = (string)JObject.Parse(json)["errorCode"];
+                    errorCode = (string?)JObject.Parse(json)["errorCode"];
                 }
                 catch (JsonReaderException)
                 {

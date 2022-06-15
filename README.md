@@ -15,7 +15,7 @@ The `prizmdoc-viewer-wrapper` component is designed for you to easily customize 
 
 ### For the Command Line
 
-- [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+- [.NET SDK 6.0](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ### For Visual Studio
 
@@ -23,13 +23,13 @@ The `prizmdoc-viewer-wrapper` component is designed for you to easily customize 
 
 ### For Visual Studio Code
 
-- [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+- [.NET SDK 6.0](https://dotnet.microsoft.com/download/dotnet/6.0)
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) (if you don't have this extension installed, running the sample will fail with an error dialog that says "Configured type 'coreclr' is not supported.")
 
 ### General
 
-- [Node.js and npm](https://nodejs.org/) are required to build the Angular client app.
+- [Node.js](https://nodejs.org/) 14 or higher
 
 ## Setup
 
@@ -39,7 +39,7 @@ Configure how to connect to PAS (PrizmDoc Application Services) by editing `MyWe
 
 #### Use PrizmDoc Cloud (Easiest)
 
-If you're just getting started, the easiest thing to do is to use [PrizmDoc Cloud](https://cloud.accusoft.com). We host PAS for you and all you need is your [PrizmDoc Cloud](https://cloud.accusoft.com) API key. If you don't have an API key, you can get one for free at https://cloud.accusoft.com.
+If you're just getting started, the easiest thing to do is to use [PrizmDoc Cloud](https://cloud.accusoft.com). We host PAS for you and all you need is your [PrizmDoc Cloud](https://cloud.accusoft.com) API key. If you don't have an API key, you can get one for free at <https://cloud.accusoft.com>.
 
 For [PrizmDoc Cloud](https://cloud.accusoft.com), your `appsettings.json` will need to contain a section like this:
 
@@ -54,7 +54,7 @@ Where `YOUR_API_KEY` is your [PrizmDoc Cloud](https://cloud.accusoft.com) API ke
 
 > Note: If you'd rather not store your API key within `appsettings.json`, the `MyWebApplication` project has been pre-configured for use with the `dotnet user-secrets` command-line tool. You can use this tool to configure a `"PrizmDoc:CloudApiKey"` value for just your dev machine like so:
 
-```
+```sh
 dotnet user-secrets set "PrizmDoc:CloudApiKey" "YOUR_API_KEY" --project MyWebApplication
 ```
 
@@ -75,7 +75,7 @@ The `PasSecretKey` must match the `secretKey` value specified in your PAS config
 
 > Note: If you'd rather not store your secret key within `appsettings.json`, the `MyWebApplication` project has been pre-configured for use with the `dotnet user-secrets` command-line tool. You can use this tool to configure a `"PrizmDoc:PasSecretKey"` value for just your dev machine like so:
 
-```
+```sh
 dotnet user-secrets set "PrizmDoc:PasSecretKey" "YOUR_PAS_SECRET_KEY" --project MyWebApplication
 ```
 
@@ -83,7 +83,7 @@ dotnet user-secrets set "PrizmDoc:PasSecretKey" "YOUR_PAS_SECRET_KEY" --project 
 
 To start the application from the command line:
 
-```
+```sh
 dotnet run --project MyWebApplication
 ```
 
@@ -92,13 +92,11 @@ This will:
 - Launch a small web application on `https://localhost:5001` (and on
   `http://localhost:5000`, which simply redirects to the https port).
 - Launch an Angular CLI server for the Angular application, and proxy
-  appropriate traffic to it (if you would prefer to launch the Angular CLI
-  server manually during development, you can adjust `Startup.cs`; see the
-  comments at the end of the `Startup.cs` file).
+  appropriate traffic to it.
 
 If you have configured your connection to PAS correctly, you should see output like this:
 
-```
+```sh
 info: Microsoft.Hosting.Lifetime[0]
       Now listening on: https://localhost:5001
 info: Microsoft.Hosting.Lifetime[0]
