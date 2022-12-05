@@ -53,6 +53,13 @@ public class Program
 
         app.MapReverseProxy();
 
+        // Add CSP header to all responses.
+        app.Use(async (context, next) =>
+        {
+            context.Response.Headers.Add("Content-Security-Policy", "script-src 'self'");
+            await next();
+        });
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {

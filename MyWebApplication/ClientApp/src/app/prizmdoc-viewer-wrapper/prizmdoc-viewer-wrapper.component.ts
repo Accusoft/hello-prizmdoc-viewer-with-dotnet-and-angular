@@ -80,7 +80,7 @@ export class PrizmDocViewerWrapperComponent implements OnInit, OnChanges {
       documentID: this.viewingSessionId,
       imageHandlerUrl: PAS_PROXY_BASE_ROUTE,                     // Base path the viewer should use to make requests to PAS (PrizmDoc Application Services).
       viewerAssetsPath: VIEWER_ASSETS_BASE_ROUTE,                // Base path the viewer should use for static assets
-      resourcePath: `${VIEWER_ASSETS_BASE_ROUTE}/viewer-assets`, // Base path the viewer should use for images
+      resourcePath: `${VIEWER_ASSETS_BASE_ROUTE}/img`, // Base path the viewer should use for images
       language: window.viewerCustomizations.languages['en-US'],
       template: window.viewerCustomizations.template,
       icons: window.viewerCustomizations.icons,
