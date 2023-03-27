@@ -1,8 +1,6 @@
 # Hello PrizmDoc Viewer with .NET and Angular
 
-A small ASP.NET Core and Angular application, based on the official .NET Core
-Angular template (`dotnet new angular`), which shows how to use PrizmDoc Viewer
-in an Angular context.
+A small ASP.NET Core and Angular application, based on the official .NET Core Angular template (`dotnet new angular`), which shows how to use PrizmDoc Viewer in an Angular context.
 
 More specifically, this sample includes a special `prizmdoc-viewer-wrapper` component which encapsulates the work of injecting the non-Angular PrizmDoc Viewer into an Angular application.
 
