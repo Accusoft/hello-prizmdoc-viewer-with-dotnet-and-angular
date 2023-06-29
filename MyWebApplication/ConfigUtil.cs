@@ -163,14 +163,14 @@ namespace MyWebApplication
 
                 if (valueSet)
                 {
-                    throw new Exception("Invalid PAS secret. Make sure your \"PrizmDoc:PasSecret\" configuration value matches the \"secretKey\" value in your PAS config file. " +
+                    throw new Exception("Invalid PAS secret. Make sure your \"PrizmDoc:PasSecretKey\" configuration value matches the \"secretKey\" value in your PAS config file. " +
                                         "See the README.md for more information.");
                 }
                 else
                 {
-                    throw new Exception("You appear to be using a self-hosted PAS instance, but you have not provided a \"PrizmDoc:PasSecret\" configuration setting. " +
+                    throw new Exception("You appear to be using a self-hosted PAS instance, but you have not provided a \"PrizmDoc:PasSecretKey\" configuration setting. " +
                                         "When self-hosting PAS, certain requests require an \"Accusoft-Secret\" header in order to be accepted. " +
-                                        "To ensure this header is correctly sent, make sure to provide a \"PrizmDoc:PasSecret\" configuration value " +
+                                        "To ensure this header is correctly sent, make sure to provide a \"PrizmDoc:PasSecretKey\" configuration value " +
                                         "which matches the \"secretKey\" value in your PAS config file. " +
                                         "See the README.md for more information.");
                 }
