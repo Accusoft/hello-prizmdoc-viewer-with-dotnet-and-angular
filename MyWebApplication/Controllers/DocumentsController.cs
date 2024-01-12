@@ -19,12 +19,14 @@ namespace MyWebApplication.Controllers
         private readonly ILogger<DocumentsController> _logger;
         private readonly IFileProvider _fileProvider;
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
 
-        public DocumentsController(ILogger<DocumentsController> logger, IWebHostEnvironment env, IHttpClientFactory httpClientFactory)
+        public DocumentsController(ILogger<DocumentsController> logger, IWebHostEnvironment env, IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _logger = logger;
             _fileProvider = new PhysicalFileProvider(env.ContentRootPath);
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
         }
 
         [HttpGet("documents")]
@@ -41,16 +43,33 @@ namespace MyWebApplication.Controllers
         public async Task<ViewingSessionInfo> BeginViewing(string requestedFilename)
         {
             var pasClient = _httpClientFactory.CreateClient("PAS");
+            bool isClientSideViewingEnabled = bool.Parse(_configuration["PrizmDoc:ClientSideViewing"]);
+            HttpResponseMessage response;
 
             // 1. Create a new viewing session
-            var response = await pasClient.PostAsync("ViewingSession", new StringContent(JsonSerializer.Serialize(new
+            if (isClientSideViewingEnabled)
             {
-                source = new
+                response = await pasClient.PostAsync("ViewingSession", new StringContent(JsonSerializer.Serialize(new
                 {
-                    type = "upload",
-                    displayName = requestedFilename
-                }
-            })));
+                    source = new
+                    {
+                        type = "upload",
+                        displayName = requestedFilename
+                    },
+                    allowedClientFileFormats = new string[1] { "pdf" }
+                })));
+            }
+            else
+            {
+                response = await pasClient.PostAsync("ViewingSession", new StringContent(JsonSerializer.Serialize(new
+                {
+                    source = new
+                    {
+                        type = "upload",
+                        displayName = requestedFilename
+                    }
+                })));
+            }
             response.EnsureSuccessStatusCode();
 
             // 2. Create a new viewing session which we will return to the

@@ -80,7 +80,7 @@
               "browserTarget": "MyWebApplication:build:development",
               "proxyConfig": "proxy.conf.js",
               "headers": {
-                "Content-Security-Policy": "script-src 'self'"
+                "Content-Security-Policy": "script-src 'self'; worker-src blob:"
               }
             }
           },

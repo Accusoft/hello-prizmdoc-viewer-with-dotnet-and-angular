@@ -56,7 +56,7 @@ public class Program
         // Add CSP header to all responses.
         app.Use(async (context, next) =>
         {
-            context.Response.Headers.Add("Content-Security-Policy", "script-src 'self'");
+            context.Response.Headers.Add("Content-Security-Policy", "script-src 'self'; worker-src blob:");
             await next();
         });
 
