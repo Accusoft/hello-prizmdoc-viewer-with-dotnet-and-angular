@@ -29,7 +29,13 @@ The `prizmdoc-viewer-wrapper` component is designed for you to easily customize 
 
 - [Node.js](https://nodejs.org/) 14 or higher
 
-## Setup
+### Set up a dev HTTPS certificate
+
+In order to host an HTTPS server locally, you will need a valid certificate for the localhost to be installed on your machine. You can create a self-signed certificate using the [dotnet dev-certs](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-dev-certs) command:
+
+```shell
+dotnet dev-certs https
+```
 
 ### Configure the Application to Connect to PAS
 
